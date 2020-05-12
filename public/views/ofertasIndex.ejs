@@ -1,0 +1,39 @@
+<%- include('./partials/header', {title: 'Todos los productos'}) %>
+
+
+	<!-- todos los productos -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Productos en Oferta</h2>
+			</div>
+            <% for (let i = 0; i < productos.length; i++) { 
+                if (productos[i].category == "in-sale"){ %>
+			<div class="col-12 col-sm-6 col-lg-3">
+				<section class="product-box">
+					<a href="/products/detail/<%= productos[i].id %>">
+						<figure class="product-box_image">
+							<img src="/images/<%= productos[i].image %>" alt="imagen de producto">
+						</figure>
+						<article class="product-box_data">
+							<% const toThousand = n =>n.toString().replace( /\B(?=(\d{3})+(?!\d))/g,"." ) ; %>
+                        <h2>$<%= toThousand (productos[i].price) %></h2>
+							<span><% if (productos[i].discount != 0) {%>
+								<%= productos[i].discount %>% OFF
+								<% } %></span>
+							<p><%= productos[i].name %>></p>
+							<i class="fas fa-truck"></i>
+						</article>
+					</a>
+				</section>
+			</div>
+            <% } 
+        } %>
+		
+		</div>
+	</div>
+	<!-- /todos los productos -->
+
+	<!-- footer -->
+<%- include('./partials/footer') %>
+	<!-- /footer -->
