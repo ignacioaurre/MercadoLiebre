@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 
 let rutasMain = require('./routes/main');
 let rutasProduct = require('./routes/product');
+let rutasUsers = require('./routes/users');
 
 var app = express();
 
@@ -23,6 +24,7 @@ app.use(methodOverride('_method'))
 app.listen(3030, () => console.log('Server running in 3030 port'));
 app.use('/', rutasMain);
 app.use('/products', rutasProduct);
+app.use('/users', rutasUsers);
 
 
 // catch 404 and forward to error handler
